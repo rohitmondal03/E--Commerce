@@ -1,16 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import { motion } from 'framer-motion'
+
 const Navbar = () => {
     return (
-        <nav className='nav flex flex-row items-center justify-between px-56 py-10'>
+        <nav className='nav bg-amber-100 flex flex-row items-center justify-between px-56 py-8'>
             <div className='logo_name'>
-                <h1 className='text-4xl font-bold'>E-Commerce</h1>
+                <h1 className='text-5xl font-bold'>E-Com.</h1>
             </div>
 
-            <div className='cart_link'>
-                <Link to='/cart'>
-                    <h4 className='text-2xl'>Cart</h4>
+            <div className='nav_links text-2xl w-80 flex flex-row justify-around'>
+                <Link className='transition duration-300 hover:scale-110 hover:font-bold' to='/'>
+                    <h4 className=''>home</h4>
+                </Link>
+
+                <Link className='transition duration-300 hover:scale-110 hover:font-bold' to='/cart'>
+                    <h4 className=''>cart</h4>
                 </Link>
             </div>
         </nav>

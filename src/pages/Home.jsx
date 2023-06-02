@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 // COMPONENTS
 import Navbar from '../components/Navbar'
+import HeroSec from '../components/HeroSec';
 import { CartContext } from '../Context/Context';
 
 
@@ -12,9 +13,12 @@ import StarIcon from '@mui/icons-material/Star';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 
-const Home = () => {
+// FRAMER MOTION 
+import { motion } from "framer-motion";
 
-    const navigate = useNavigate();
+
+
+const Home = () => {
 
     const [data, setData] = useState([]);
 
@@ -40,49 +44,65 @@ const Home = () => {
         <>
             <Navbar />
 
-            <div className='flex flex-row grow flex-wrap'>
-                {data.map(productData => {
+            <HeroSec />
 
-                    productData.quantity = 1;
 
-                    return (
-                        <div
-                            key={productData.id}
-                            className='products_card border-2 border-zinc-500 rounded-2xl my-5 py-5 px-7 mx-1 flex flex-col grow basis-1/4 justify-evenly cursor-pointer'
-                        >
-                            <div className='products_img'>
-                                <img
-                                    src={productData.image}
-                                    alt={productData.category}
-                                    className='h-56 mx-auto'
-                                />
+
+            {/* Shopping Items */}
+
+            <section>
+
+                <h1 className='text-6xl text-center font-extrabold mb-10'>Shopping Items</h1>
+
+                <div className='flex flex-row grow flex-wrap'>
+                    {data.map(productData => {
+                        productData.quantity = 1;
+
+                        return (
+                            <div
+                                key={productData.id}
+                                className='products_card border-2 rounded-2xl my-10 py-5 px-3 mx-5 flex flex-col grow basis-1/4 justify-evenly shadow-xl'
+                            >
+                                <div className='products_img'>
+                                    <img
+                                        src={productData.image}
+                                        alt={productData.category}
+                                        className='h-48 mx-auto'
+                                    />
+                                </div>
+
+                                <div className='products_text text-center mt-5'>
+                                    <p className='text-2xl'>{productData.title}</p>
+
+                                    <p className='text-xl'>
+                                        <span className='border-2 border-green-600 font-bold py-1 px-3 rounded-xl mr-5'>{productData.rating.rate} <StarIcon fontSize='small' className='mb-1 ml-1' /></span>
+
+                                        <span className='italic font-semibold'>({productData.rating.count} reviews)</span>
+                                    </p>
+
+                                    <p className='text-xl flex flex-row justify-between items-center'>
+                                        <span className='text-2xl font-extrabold'>$. {productData.price}</span>
+
+                                        <motion.span
+                                            className='relative text-sm text-white bg-red-600 py-2 px-4 rounded-xl cursor-pointer'
+                                            onClick={() => {
+                                                dispatch({ type: 'ADD', payload: productData });
+                                            }}
+                                            whileHover={{ 
+                                                scale: 1.1, 
+                                                transition: { duration: 0.3, ease: 'easeOut' } 
+                                            }}
+                                            whileTap={{scale: 0.95}}
+                                        >
+                                            Add to cart
+                                        </motion.span>
+                                    </p>
+                                </div>
                             </div>
-
-                            <div className='products_text text-center mt-10'>
-                                <p className='text-3xl font-bold'>{productData.title}</p>
-
-                                <p className='text-xl'>
-                                    <span className='border py-1 px-3 rounded-xl bg-green-500 mr-5'>{productData.rating.rate} <StarIcon fontSize='medium' className='mb-1' /></span>
-
-                                    <span>({productData.rating.count})</span>
-                                </p>
-
-                                <p className='text-2xl flex flex-row justify-between items-center'>
-                                    <span className='font-bold'>${productData.price}</span>
-                                    <span
-                                        className='cart_img relative bg-zinc-200 py-2 px-4 rounded-xl cursor-pointer'
-                                        onClick={() => {
-                                            dispatch({ type: 'ADD', payload: productData });
-                                        }}
-                                    >
-                                        <ShoppingCartIcon fontSize='large' />
-                                    </span>
-                                </p>
-                            </div>
-                        </div>
-                    )
-                })}
-            </div>
+                        )
+                    })}
+                </div>
+            </section>
         </>
     )
 }
