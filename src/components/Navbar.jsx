@@ -1,13 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+
+// FRAMER MOTION
 import { motion } from 'framer-motion'
+
 
 const Navbar = () => {
     return (
         <nav className='nav bg-amber-100 flex flex-row items-center justify-between px-56 py-8'>
             <div className='logo_name'>
-                <h1 className='text-5xl font-bold'>E-Com.</h1>
+                <h1 className='text-5xl text-zinc-700 font-bold'>E-Com.</h1>
             </div>
 
             <div className='nav_links text-2xl w-80 flex flex-row justify-around'>

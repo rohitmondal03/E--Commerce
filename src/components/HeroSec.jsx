@@ -3,6 +3,10 @@ import React from 'react'
 
 // ASSETS
 import nikeImg from "../assets/nike-shoes.jpg"
+import carouselImg1 from "../assets/carouselImg-1.jpg"
+import carouselImg2 from "../assets/carouselImg-2.jpg"
+import carouselImg3 from "../assets/carouselImg-3.jpg"
+import carouselImg4 from "../assets/carouselImg-4.jpg"
 
 
 // ANT DESIGN
@@ -19,51 +23,54 @@ const contentStyle = {
 };
 
 
+const carouselImg = [
+    {
+        id: 1,
+        src: carouselImg1
+    },
+    {
+        id: 2,
+        src: carouselImg2
+    },
+    {
+        id: 3,
+        src: carouselImg3
+    },
+    {
+        id: 4,
+        src: carouselImg4
+    }
+]
+
+
 const HeroSec = () => {
     return (
         <section className=''>
             <div className=''>
                 <div className='text-center'>
                     <h1
-                        className='text-6xl font-extrabold mb-8'
+                        className='text-6xl text-zinc-700 font-extrabold mb-12'
                         style={{
-                            textShadow: '0px 0px 100px red',
+                            textShadow: '0px 0px 80px red',
                         }}
                     >
-                        Welcome to E-Com.</h1>
+                        Welcome to E-Com</h1>
 
-                    <p className='text-xl font-semibold text-zinc-500'>- your ultimate destination for online shopping! At E-Com, we believe that shopping should be an enjoyable and convenient experience. With our wide range of products, seamless user interface, and top-notch customer service, we strive to make your online shopping journey as effortless as possible.</p>
+                    <p className='text-2xl font-semibold text-zinc-500'>- your ultimate destination for online shopping! At E-Com, we believe that shopping should be an enjoyable and convenient experience. With our wide range of products, seamless user interface, and top-notch customer service, we strive to make your online shopping journey as effortless as possible.</p>
                 </div>
 
-                {/* <img
-                    src={nikeImg}
-                    className='h-96'
-                    alt='E-Com intro img'
-                /> */}
 
-                <div className='mx-auto w-1/2'>
-                    <Carousel autoplay className=''>
-                        <div className='mx-auto'>
-                            <img
-                                src={nikeImg}
-                                className='mx-auto h-96'
-                            />
-                        </div>
-                        <div>
-                            <img
-                                src={nikeImg}
-                            />
-                        </div>
-                        <div>
-                            <img
-                                src={nikeImg}
-                            />
-                        </div>
-                        <div>
-                            <img
-                                src={nikeImg}
-                            />
-                        </div>
+                <div className='mx-auto mt-28 w-2/4'>
+                    <Carousel autoplay className='h-1/2'>
+                        {carouselImg.map(data => (
+                            <div className='rounded'>
+                                <img
+                                    {...data}
+                                    alt='E-Com shopping images'
+                                    className='h-96 w-full'
+                                />
+                            </div>
+                        ))}
                     </Carousel>
                 </div>
             </div>
