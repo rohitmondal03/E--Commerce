@@ -6,7 +6,8 @@ import './App.css'
 // COMPONENTS
 import Home from './pages/Home'
 import Cart from './pages/Cart'
-import Navbar from './components/Navbar'
+import BacktoTop from './components/BacktoTop'
+import ScrollToTop from './components/BacktoTop'
 
 
 function App() {
@@ -14,10 +15,12 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        <BacktoTop />
         <Routes>
           <Route index element={<Home />} />
           <Route path='/cart' element={<Cart />} />
         </Routes>
+        <ScrollToTop />
       </BrowserRouter>
     </>
   )

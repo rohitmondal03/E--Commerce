@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@200&display=swap');
 
 
 body {
@@ -18,7 +19,7 @@ section {
 
 /* NAVBAR */
 .logo_name {
-    font-family: 'PT Serif', serif;
+    font-family: 'Geologica', sans-serif;
 }
 
 

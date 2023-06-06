@@ -5,8 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 // COMPONENTS
 import Navbar from '../components/Navbar'
 import HeroSec from '../components/HeroSec';
-import Footer from '../components/Footer';
 import { CartContext } from '../Context/Context';
+import ScrollToTop from '../components/BacktoTop';
 
 
 // MATERIAL UI 
@@ -58,15 +58,20 @@ const Home = () => {
                         productData.quantity = 1;
 
                         return (
-                            <div
+                            <motion.div
                                 key={productData.id}
                                 className='products_card border-2 rounded-2xl my-10 py-5 px-3 mx-5 flex flex-col grow basis-1/4 justify-evenly shadow-xl'
+                                initial={{ opacity: 0 }}
+                                transition={{duration: 1, ease: 'easeIn'}}
+                                whileInView={{opacity: 1}}
+                                viewport={{once: true}}
                             >
                                 <div className='products_img'>
                                     <img
                                         src={productData.image}
                                         alt={productData.category}
-                                        className='h-48 mx-auto transition duration-200 hover:scale-125 overflow-hidden'
+                                        loading='lazy'
+                                        className='h-48 mx-auto transition duration-300 hover:scale-110'
                                     />
                                 </div>
 
@@ -74,7 +79,7 @@ const Home = () => {
                                     <p className='text-2xl'>{productData.title}</p>
 
                                     <p className='text-xl'>
-                                        <span className='border-2 border-orange-500 font-bold py-2 px-4 rounded-xl mr-5'>{productData.rating.rate} <StarIcon fontSize='small' className='mb-1 ml-1' /></span>
+                                        <span className='border-2 border-emerald-600 font-bold py-2 px-4 rounded-xl mr-5'>{productData.rating.rate} <StarIcon fontSize='small' className='mb-1 ml-1' /></span>
 
                                         <span className='italic font-semibold'>({productData.rating.count} reviews)</span>
                                     </p>
@@ -97,15 +102,11 @@ const Home = () => {
                                         </motion.span>
                                     </p>
                                 </div>
-                            </div>
+                            </motion.div>
                         )
                     })}
                 </div>
             </section>
-
-
-
-            <Footer />
         </>
     )
 }

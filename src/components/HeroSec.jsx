@@ -2,7 +2,6 @@ import React from 'react'
 
 
 // ASSETS
-import nikeImg from "../assets/nike-shoes.jpg"
 import carouselImg1 from "../assets/carouselImg-1.jpg"
 import carouselImg2 from "../assets/carouselImg-2.jpg"
 import carouselImg3 from "../assets/carouselImg-3.jpg"
@@ -51,10 +50,11 @@ const HeroSec = () => {
                     <h1
                         className='text-6xl text-zinc-700 font-extrabold mb-12'
                         style={{
-                            textShadow: '0px 0px 80px red',
+                            textShadow: '2px 4px 2px #ff8e8e',
                         }}
                     >
-                        Welcome to E-Com</h1>
+                        Welcome to E-Com
+                    </h1>
 
                     <p className='text-2xl font-semibold text-zinc-500'>- your ultimate destination for online shopping! At E-Com, we believe that shopping should be an enjoyable and convenient experience. With our wide range of products, seamless user interface, and top-notch customer service, we strive to make your online shopping journey as effortless as possible.</p>
                 </div>
@@ -62,8 +62,8 @@ const HeroSec = () => {
 
                 <div className='mx-auto mt-28 w-2/4'>
                     <Carousel autoplay className='h-1/2'>
-                        {carouselImg.map(data => (
-                            <div className='rounded'>
+                        {carouselImg.map((data, index) => (
+                            <div key={index} className='rounded'>
                                 <img
                                     {...data}
                                     alt='E-Com shopping images'

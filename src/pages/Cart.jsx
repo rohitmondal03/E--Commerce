@@ -9,10 +9,12 @@ const Cart = () => {
   const globalState = useContext(CartContext);
   const state = globalState.state
   const dispatch = globalState.dispatch
+  console.log(state);
 
   const total = state.reduce((total, item) => {
     return total + item.price * item.quantity
   }, 0)
+
 
 
   return (
@@ -20,66 +22,78 @@ const Cart = () => {
 
       <Navbar />
 
-      <div className='flex flex-col flex-wrap items-center justify-evenly'>
-        {state.map((data, index) =>
-          <div
-            key={data.id}
-            className='flex flex-col justify-center items-center basis-1/4 grow border-2 border-black rounded-xl my-5 mx-1 py-3 px-7 text-center'
-          >
-            <img
-              src={data.image}
-              alt={data.title}
-              className='h-56 w-56 mx-auto'
-            />
-
-            <p className='font-bold text-2xl'>{data.title}</p>
-            <p className='text-2xl my-5 font-semibold'>$ {data.quantity * data.price}</p>
-
-            <div className='quantity'>
-              <button
-                className='border-2 border-black rounded-sm px-2 text-xl font-bold'
-                onClick={() => { dispatch({ type: 'INCREASE', payload: data }) }}
+      {state.length > 0
+        ?
+        (
+          <div className='flex flex-col flex-wrap items-center justify-evenly'>
+            {state.map((data, index) =>
+              <div
+                key={data.id}
+                className='flex flex-row justify-between items-center basis-1/4 grow rounded-xl my-12 mx-1 py-3 px-7 text-center w-4/5'
               >
-                +
-              </button>
+                <img
+                  src={data.image}
+                  alt={data.title}
+                  className='h-44 w-44'
+                />
 
-              <p className='font-bold text-xl'>{data.quantity}</p>
+                <p className='text-xl w-96'>{data.title}</p>
+                <p className='text-2xl font-semibold'>$ {data.quantity * data.price}</p>
 
-              <button
-                className='border-2 border-black rounded-sm px-2 text-xl font-bold'
-                onClick={() => {
-                  if (data.quantity > 1) {
-                    dispatch({ type: 'DECREASE', payload: data });
-                  } else {
-                    dispatch({ type: 'REMOVE', payload: data });
-                  }
-                }}
-              >
-                -
-              </button>
-            </div>
+                <div className='quantity flex flex-col items-center justify-between'>
+                  <button
+                    className='border-2 border-black px-2 text-xl font-bold rounded-full'
+                    onClick={() => { dispatch({ type: 'INCREASE', payload: data }) }}
+                  >
+                    +
+                  </button>
 
-            <h2
-              className='border-2 border-black rounded-sm px-2 text-xl font-bold mt-5 cursor-pointer'
-              onClick={() => { dispatch({ type: 'REMOVE', payload: data }) }}
-            >
-              x
-            </h2>
-          </div>
-        )}
+                  <p className='font-bold text-xl my-2'>{data.quantity}</p>
 
-        {state.length > 0
-          &&
-          (
-            <>
-              <div className='h-1 w-full bg-zinc-700 mb-5' />
-              <div className='border-2 border-zinc-400 px-5 py-2 flex'>
-                <h2>Total Amount: $<span className='text-xl font-bold'>{total}</span> </h2>
+                  <button
+                    className='border-2 border-black px-2 text-xl font-bold rounded-full'
+                    onClick={() => {
+                      if (data.quantity > 1) {
+                        dispatch({ type: 'DECREASE', payload: data });
+                      } else {
+                        dispatch({ type: 'REMOVE', payload: data });
+                      }
+                    }}
+                  >
+                    -
+                  </button>
+                </div>
+
+                <h2
+                  className='bg-gradient-to-r from-red-600 to-orange-400 text-white border border-black rounded-xl px-3 py-3 cursor-pointer transition-all duration-300 hover:scale-110 hover:bg-gradient-to-t hover:shadow-xl hover:shadow-zinc-400'
+                  onClick={() => { dispatch({ type: 'REMOVE', payload: data }) }}
+                >
+                  Remove from cart
+                </h2>
               </div>
-            </>
-          )
-        }
-      </div>
+            )}
+
+            {state.length > 0
+              &&
+              (
+                <>
+                  <div className='h-1 w-full bg-zinc-700 mb-5' />
+                  <div className='border-2 border-zinc-400 px-5 py-2 flex'>
+                    <h2>Total Amount: $<span className='text-xl font-bold'>{total}</span> </h2>
+                  </div>
+                </>
+              )
+            }
+          </div>
+        )
+        :
+        (
+          <div className='flex flex-col justify-center items-center h-screen'>
+            <div className='text-center text-6xl'>No items in cart ...</div>
+          </div>
+        )
+      }
+
     </>
   )
 }
