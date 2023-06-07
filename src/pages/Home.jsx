@@ -6,8 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar'
 import HeroSec from '../components/HeroSec';
 import { CartContext } from '../Context/Context';
-import ScrollToTop from '../components/BacktoTop';
-
+import ScrolltopBtn from "../components/ScrolltopBtn"
 
 // MATERIAL UI 
 import StarIcon from '@mui/icons-material/Star';
@@ -50,7 +49,7 @@ const Home = () => {
 
             {/* Shopping Items */}
 
-            <section className='my-12'>
+            <section className='mb-12'>
                 <h1 className='text-center text-zinc-900 text-5xl font-bold underline'>Shopping Items</h1>
 
                 <div className='flex flex-row grow flex-wrap'>
@@ -62,16 +61,17 @@ const Home = () => {
                                 key={productData.id}
                                 className='products_card border-2 rounded-2xl my-10 py-5 px-3 mx-5 flex flex-col grow basis-1/4 justify-evenly shadow-xl'
                                 initial={{ opacity: 0 }}
-                                transition={{duration: 1, ease: 'easeIn'}}
+                                transition={{duration: 0.5, ease: 'easeOut'}}
                                 whileInView={{opacity: 1}}
                                 viewport={{once: true}}
+                                whileHover={{scale: 1.1}}
                             >
                                 <div className='products_img'>
                                     <img
                                         src={productData.image}
                                         alt={productData.category}
                                         loading='lazy'
-                                        className='h-48 mx-auto transition duration-300 hover:scale-110'
+                                        className='h-48 mx-auto'
                                     />
                                 </div>
 
@@ -107,6 +107,8 @@ const Home = () => {
                     })}
                 </div>
             </section>
+            
+            {/* <ScrolltopBtn /> */}
         </>
     )
 }

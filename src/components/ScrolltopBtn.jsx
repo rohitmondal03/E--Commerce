@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { North } from '@mui/icons-material';
 
 
 const ScrolltopBtn = () => {
@@ -22,14 +23,27 @@ const ScrolltopBtn = () => {
     }
 
 
+    const buttonStyle = {
+        position: 'fixed',
+        bottom: '1rem',
+        right: '2rem',
+        height: '40px',
+        width: '40px',
+        color: 'white',
+        padding: '.2rem .5rem',
+        border: '1px solid black',
+        borderRadius: '10px',
+    }
+
 
     return (
         <>
             {scrollToTop
                 && (
-                    <KeyboardArrowUpIcon
+                    <North
                         onClick={scrollUp}
-                        className='fixed bottom-4 right-8 h-24 w-24 text-3xl text-white py-3 px-1 border-2 border-black'
+                        style={buttonStyle}
+                        className='bg-zinc-800'
                     />
                 )
             }

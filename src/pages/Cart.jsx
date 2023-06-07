@@ -38,7 +38,7 @@ const Cart = () => {
                 />
 
                 <p className='text-xl w-96'>{data.title}</p>
-                <p className='text-2xl font-semibold'>$ {data.quantity * data.price}</p>
+                <p className='text-2xl px-2 py-1 font-semibold border-2 border-zinc-400 rounded-lg'>$ {data.quantity * data.price}</p>
 
                 <div className='quantity flex flex-col items-center justify-between'>
                   <button
@@ -78,8 +78,9 @@ const Cart = () => {
               (
                 <>
                   <div className='h-1 w-full bg-zinc-700 mb-5' />
-                  <div className='border-2 border-zinc-400 px-5 py-2 flex'>
-                    <h2>Total Amount: $<span className='text-xl font-bold'>{total}</span> </h2>
+
+                  <div className='border-2 border-zinc-400 px-5 py-2 mb-8 flex'>
+                    <h2 className='text-xl'>Total Amount: <span className='text-2xl font-bold underline'>$ {total}</span> </h2>
                   </div>
                 </>
               )
@@ -88,8 +89,10 @@ const Cart = () => {
         )
         :
         (
-          <div className='flex flex-col justify-center items-center h-screen'>
-            <div className='text-center text-6xl'>No items in cart ...</div>
+          <div className='flex flex-col justify-center items-center'>
+            <div className="loader"></div>
+
+            <div className='text-center font-bold text-6xl m-auto'>No items in cart ...</div>
           </div>
         )
       }
